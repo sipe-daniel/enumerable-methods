@@ -36,10 +36,19 @@ puts '#my_each_with_index'
 
 end
 
-puts "first test"
+puts "# second test #"
 
-[5,6,7].my_each_with_index do |x,i|
-puts "#{i} -> #{x}"
+original_arr = [1,2,3]
+second_arr = []
+second_arr = original_arr.my_each_with_index do |x,i|
+  puts "index #{i} -> value #{x + 2}"
 end
-puts "second test"
+
+puts "print the original array"
+p original_arr
+puts "print the return of my_each_with_index method"
+p second_arr
+
+
+
 #----------------------------------------------#
