@@ -1,8 +1,10 @@
 require_relative 'enumerable.rb'
 
-array = [1, 2, 3]
+puts "Original arraty"
+array = [1, 2, 3, 4, 5, 6, 7]
 
-puts 'my_each method'
+puts ""
+puts '#MY_EACH'
 another_one = []
 new_array = array.my_each do |num|
   another_one << num * 2
@@ -24,8 +26,8 @@ p another_one
 
 
 #----------------------------------------------#
-
-puts '#my_each_with_index'
+puts ""
+puts '#MY_EACH_WITH_INDEX'
 
 [5, 10, 15, 20, 25, 30].my_each_with_index do |num, idx|
   
@@ -52,3 +54,23 @@ p second_arr
 
 
 #----------------------------------------------#
+puts  ""
+puts "#MY_SELECT"
+
+even_array = []
+
+even_array = array.my_select do |value|
+  value.odd?
+end
+grater_than = []
+grater_than = array.my_select do |value|
+  value > 4
+end
+
+puts "even number return"
+p even_array
+puts "grater than 4 return"
+p grater_than
+puts "original array"
+p array
+
