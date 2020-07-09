@@ -1,15 +1,14 @@
 array = [1, 2, 3]
 
 module Enumerable
+
     def my_each
-        i = 0
-        arr = []
-        while i < self.length
-           arr[i] = yield self[i]
-            i += 1
-        end
-        arr
+        return to_enum(__method__) unless block_given?
+        
+        length.times { |i| yield (to_a[i]) }
+        self
     end
+      
 
     def my_each_with_index
         index = 0
@@ -20,6 +19,11 @@ module Enumerable
         end
         arr
     end
+
+    #---------------------------________#
+
+ 
+      
 end
 
 

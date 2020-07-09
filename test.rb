@@ -3,10 +3,12 @@ require_relative 'enumerable.rb'
 array = [1, 2, 3]
 
 puts 'my_each method'
-
-new_array = array.my_each do |number|
-  number*2
+another_one = []
+new_array = array.my_each do |num|
+  another_one << num * 2
 end
+
+
 puts 'first test'
 [1, 2, 3].my_each { |n| puts "Current number is: #{n}" }
 
@@ -16,6 +18,9 @@ puts 'original array'
 p array
 puts 'new array'
 p new_array
+puts 'within block array'
+p another_one
+
 
 
 #----------------------------------------------#
