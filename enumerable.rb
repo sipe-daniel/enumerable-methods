@@ -105,9 +105,20 @@ module Enumerable
     end
 
     else 
-      my_each {|element| validator = true unless element.is_a?(arg)}
+      j = 0
+      my_each do |element|
+         validator += 1 if element.is_a?(arg)
+         j += 1
+      end
 
-      validator ? false : true
+      if string == "any"
+        return true if validator > 0
+        false
+      elsif string == "all"
+        return true if validator == j
+        false
+      end
+
     end
 
   end

@@ -87,5 +87,5 @@ p [].my_all?
 #--------------------MY_ANY?-------------------#
 puts "
 my_any?" 
-variable = ["yuca","popo" ].my_any?(/y/)
+variable = [ 2,"papaya" ].my_any?(Integer)
 p variable
