@@ -74,11 +74,14 @@ p grater_than
 puts "original array"
 p array
 
-#-------------------------------------#
+#----------------MY_ALL?---------------------#
 puts  ""
 puts "#MY_ALL?"
 
-p %w[ant bear cat].my_all? { |word| word.length >= 4 }
+p [1, 2i, 3.14].my_all?(Numeric)
 
+p [nil, true, 99].my_all?
 
+p [].my_all?
 
+#--------------------MY_ANY?-------------------#

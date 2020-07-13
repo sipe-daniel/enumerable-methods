@@ -54,15 +54,18 @@ module Enumerable
 
       end
     end
+
+    
  
   def arg_check(arg)
-    if arg.is_a? (Regexp)
     validator = false
+    if arg.is_a? (Regexp)
     my_each { |element| validator = true if (element.to_s =~ arg).nil? }
     return false if validator
      true
     else 
-    puts "no valid pattern parameter"
+      my_each {|element| validator = true unless element.is_a?(arg)}
+      validator ? false : true
     end
 
   end
