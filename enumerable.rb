@@ -30,8 +30,10 @@ module Enumerable
 
     end
 
+
+    def my_all? (arg = nil)
     
-    
+    end
 
  
       

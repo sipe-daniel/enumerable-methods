@@ -74,3 +74,14 @@ p grater_than
 puts "original array"
 p array
 
+#-------------------------------------#
+puts  ""
+puts "#MY_ALL?"
+array2 = [1, 2, 3, 4, 5, 6]
+validate = array2.my_all?(/t/)
+
+p validate
+
+
+
+
