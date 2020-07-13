@@ -78,11 +78,7 @@ p array
 puts  ""
 puts "#MY_ALL?"
 
-array2 = ["tapabocas", "trompeta", "toalla"]
-validate = array2.my_all?(/t/)
-
-p validate
-
+p %w[ant bear cat].my_all? { |word| word.length >= 4 }
 
 
 

@@ -32,47 +32,40 @@ module Enumerable
 
 
     def my_all? (arg = nil)
+      validate = false
 
       if block_given?
-       validate = false
-
-      my_each do |value|
-        validate = true unless yield (value)
-      end
+      
+      my_each { |value| validate = true unless yield (value)}
 
        return false if validate
        true
 
       elsif !block_given? && arg.nil?
 
-      validate2 = false
-
-       my_each do |element|
-         validate2 = true unless element
-       end
+       my_each { |element| validate = true unless element }
        
-       validate2 ? false : true
+       validate ? false : true
 
       else
 
-       check = check_arg(arg)
+       check = arg_check(arg)
        return check
+
       end
-end
+    end
  
-  def check_arg(arg)
+  def arg_check(arg)
     if arg.is_a? (Regexp)
     validator = false
-    my_each do |element|
-       validator = true if (element.to_s =~ arg).nil?
-    end 
+    my_each { |element| validator = true if (element.to_s =~ arg).nil? }
     return false if validator
      true
     else 
-    puts "regular expresion not recognized"
-   end
+    puts "no valid pattern parameter"
+    end
 
-   end
+  end
 
       
 end
