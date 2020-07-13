@@ -85,3 +85,7 @@ p [nil, true, 99].my_all?
 p [].my_all?
 
 #--------------------MY_ANY?-------------------#
+puts "
+my_any?" 
+variable = ["yuca","popo" ].my_any?(/y/)
+p variable

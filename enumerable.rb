@@ -49,22 +49,64 @@ module Enumerable
 
       else
 
-       check = arg_check(arg)
+       check = arg_check(arg, "all")
        return check
 
       end
     end
 
-    
+
+    def my_any? (arg = nil)
+      validate = false
+
+      if block_given?
+        
+        my_each do |element|
+        if yield(element)
+          validate = true
+          break
+        end
+        end
+        return true if validate
+        false
+      elsif !block_given? && arg.nil?
+
+        my_each do |element|
+          if element
+            validate = true
+            break
+          end
+        end
+        return true if validate
+        false
+      else 
+        check = arg_check(arg, "any")
+        return check
+      end
+     
+    end
+
  
-  def arg_check(arg)
-    validator = false
+  def arg_check(arg, string = "all")
+
+    validator = 0
+    i = 0
     if arg.is_a? (Regexp)
-    my_each { |element| validator = true if (element.to_s =~ arg).nil? }
-    return false if validator
-     true
+    my_each { |element| 
+      validator += 1 if !(element.to_s =~ arg).nil? 
+      i += 1
+    }
+    if string == "any"
+      return true if validator > 0
+      false
+    elsif string == "all"
+      return true if validator == i 
+      false
+    end
+
     else 
       my_each {|element| validator = true unless element.is_a?(arg)}
+
       validator ? false : true
     end
 
