@@ -2,6 +2,7 @@ array = [1, 2, 3]
 
 module Enumerable
 
+
     def my_each
         return to_enum(__method__) unless block_given?
         
@@ -30,7 +31,6 @@ module Enumerable
 
     end
 
-
     def my_all? (arg = nil)
       validate = false
 
@@ -57,35 +57,52 @@ module Enumerable
 
 
     def my_any? (arg = nil)
-      validate = false
+      
+    validate = 0
+
+    block = Proc.new do |element|
+     validate += 1 if yield(element)
+    end
+
+    no_block = Proc.new do |element|
+      validate += 1 if element
+    end
 
       if block_given?
-        
-        my_each do |element|
-        if yield(element)
-          validate = true
-          break
-        end
-        end
-        return true if validate
+        my_each(&block)
+        return true if validate > 0
         false
-      elsif !block_given? && arg.nil?
 
-        my_each do |element|
-          if element
-            validate = true
-            break
-          end
-        end
-        return true if validate
+      elsif !block_given? && arg.nil?
+        my_each(&no_block)
+        return true if validate > 0
         false
+
       else 
         check = arg_check(arg, "any")
         return check
       end
      
     end
+    
+    def my_none?
+      validate = 0
+      block = Proc.new do |element|
+        validate += 1 if yield(element)
+      end
 
+      no_block = Proc.new do |element|
+        validate += 1 if element
+      end
+
+      if block_given?
+        my_each(&block)
+        validate == 0 ? true : false
+      end
+    end
+
+   
+  
  
   def arg_check(arg, string = "all")
 

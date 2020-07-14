@@ -87,5 +87,11 @@ p [].my_all?
 #--------------------MY_ANY?-------------------#
 puts "
 my_any?" 
-variable = [ 2,"papaya" ].my_any?(Integer)
+variable = [ nil, 2 ].my_any?
 p variable
+
+#----------------------MY_NONE?-----------------#
+puts" 
+my_none?"
+
+p array.my_none? {|element| element >= 7}
