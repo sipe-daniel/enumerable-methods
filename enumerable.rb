@@ -1,15 +1,10 @@
-array = [1, 2, 3]
-
 module Enumerable
-
-
     def my_each
         return to_enum(__method__) unless block_given?
         
         length.times { |i| yield (to_a[i]) }
         self
     end
-
 
     def my_each_with_index
         return to_enum(__method__) unless block_given?
@@ -41,7 +36,6 @@ module Enumerable
       end
     end
 
-
     def my_any? (arg = nil)
       if block_given?
         my_each { |value| return true if yield (value)}
@@ -72,6 +66,7 @@ module Enumerable
 
     def my_count (arg = nil)
       acumulator = 0
+      
       if block_given?
         my_each {|element| acumulator+=1 if yield(element)}
         return acumulator
@@ -94,31 +89,25 @@ module Enumerable
   
     end
 
-
-   
-  
- 
-  def arg_all(arg)
-    if arg.is_a?(Regexp)
-      my_each {|element| return false if (element.to_s =~ arg).nil? }
-      true
-    else
-       my_each {|element| return false unless element.is_a? arg}
-       true
+    def arg_all(arg)
+      if arg.is_a?(Regexp)
+        my_each {|element| return false if (element.to_s =~ arg).nil? }
+        true
+      else
+        my_each {|element| return false unless element.is_a? arg}
+        true
+      end
     end
-  end
 
-  def arg_any(arg)
-    if arg.is_a?(Regexp)
+    def arg_any(arg)
+      if arg.is_a?(Regexp)
       my_each {|element| return true if element.to_s =~ arg}
       false
-    else
+      else
       my_each {|element| return true if element.is_a? arg}
       false
+      end
     end
-  end
-
-      
 end
 
 
