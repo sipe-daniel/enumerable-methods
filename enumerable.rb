@@ -16,23 +16,17 @@ module Enumerable
 
         length.times { |index| yield(to_a[index],index) }
         self
-
     end
 
     def my_select 
-        return to_enum(__method__) unless block_given?
-        arr = []
-        length.times do |i|
+      return to_enum(__method__) unless block_given?
+      arr = []
 
-        arr << to_a[i] if yield(to_a[i])
-
-        end
-        arr
-
+      length.times { |i| arr << to_a[i] if yield(to_a[i]) }
+      arr
     end
 
     def my_all? (arg = nil)
-      
       if block_given?
         my_each { |value| return false unless yield (value)}
         true
@@ -41,63 +35,38 @@ module Enumerable
         my_each { |element| return false unless element }
         true
       else
-       check = arg_all(arg)
-       return check
+        check = arg_all(arg)
+        return check
 
       end
     end
 
 
     def my_any? (arg = nil)
-      
-    validate = 0
-
-    block = Proc.new do |element|
-     validate += 1 if yield(element)
-    end
-
-    no_block = Proc.new do |element|
-      validate += 1 if element
-    end
-
-    if block_given?
-        my_each(&block)
-        return true if validate > 0
+      if block_given?
+        my_each { |value| return true if yield (value)}
         false
 
-    elsif !block_given? && arg.nil?
-        my_each(&no_block)
-        return true if validate > 0
+      elsif !block_given? && arg.nil?
+        my_each { |element| return true if element }
         false
-
-    else 
-        check = arg_any(arg)
-        return check
-    end
-     
+      else
+       check = arg_any(arg)
+       return check
+      end
     end
     
     def my_none? (arg = nil)
-      validate = 0
-      block = Proc.new do |element|
-        validate += 1 if yield(element)
-      end
-
-      no_block = Proc.new do |element|
-        validate += 1 if element
-      end
-
       if block_given?
-        my_each(&block)
-        validate == 0 ? true : false
+        my_each { |value| return false if yield (value)}
+        true
 
       elsif !block_given? && arg.nil?
-        my_each(&no_block)
-        validate == 0 ? true : false
-
-      else 
-         check = !arg_any(arg)
-         return check
+        my_each { |element| return false if element }
+        true
+      else
+       check = !arg_any(arg)
+       return check
       end
     end
 

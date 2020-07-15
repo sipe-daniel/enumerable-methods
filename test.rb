@@ -60,7 +60,7 @@ puts "#MY_SELECT"
 even_array = []
 
 even_array = array.my_select do |value|
-  value.odd?
+  value.even?
 end
 grater_than = []
 grater_than = array.my_select do |value|
@@ -87,14 +87,16 @@ p [].my_all?
 #--------------------MY_ANY?-------------------#
 puts "
 my_any?" 
-variable = [ "", "", 2 ].my_any?(Integer)
+variable = [ "", "", 2 ].my_any? do |element|
+ element.is_a? Symbol
+end 
 p variable
 
 #----------------------MY_NONE?-----------------#
 puts" 
 my_none?"
 
-p ["", "", ""].my_none?(Float)
+p ["", "", 3.5].my_none?{|element| element.is_a? Float}
 
 #---------------MY_COUNT---------------#
 puts "
