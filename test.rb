@@ -94,4 +94,18 @@ p variable
 puts" 
 my_none?"
 
-p array.my_none? {|element| element >= 7}
+p ["", "", 4.12].my_none?(Float)
+
+#---------------MY_COUNT---------------#
+puts "
+my_count"
+
+ary = [1, 2, 4, 2]
+
+p ary.count(Float)
+
+
+#-------------my_map------------#
+puts "
+my_map"
+p ary.my_map

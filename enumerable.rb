@@ -68,24 +68,24 @@ module Enumerable
       validate += 1 if element
     end
 
-      if block_given?
+    if block_given?
         my_each(&block)
         return true if validate > 0
         false
 
-      elsif !block_given? && arg.nil?
+    elsif !block_given? && arg.nil?
         my_each(&no_block)
         return true if validate > 0
         false
 
-      else 
+    else 
         check = arg_check(arg, "any")
         return check
-      end
+    end
      
     end
     
-    def my_none?
+    def my_none? (arg = nil)
       validate = 0
       block = Proc.new do |element|
         validate += 1 if yield(element)
@@ -98,8 +98,42 @@ module Enumerable
       if block_given?
         my_each(&block)
         validate == 0 ? true : false
+
+      elsif !block_given? && arg.nil?
+        my_each(&no_block)
+        validate == 0 ? true : false
+
+      else 
+         check = !arg_check(arg, "any")
+         return check
       end
     end
+
+    def my_count (arg = nil)
+      acumulator = 0
+      if block_given?
+        my_each {|element| acumulator+=1 if yield(element)}
+        return acumulator
+
+      elsif !block_given? && arg == nil
+        length.times {acumulator += 1}
+        return acumulator
+
+      else 
+        my_each { |element| acumulator += 1 if element == arg }
+        return acumulator
+
+      end
+    end
+
+    def my_map
+      return to_enum(__method__) unless block_given?
+      new_arr = []
+      my_each { |element| new_arr << element if yield (element) }
+      new_arr
+  
+    end
+
 
    
   
