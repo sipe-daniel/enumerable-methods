@@ -108,4 +108,7 @@ p ary.count(Float)
 #-------------my_map------------#
 puts "
 my_map"
-p ary.my_map
+
+a = [ "a", "b", "c", "d" ]
+
+p a.my_map.with_index {|x, i| x * i}

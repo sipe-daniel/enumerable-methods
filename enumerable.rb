@@ -129,7 +129,7 @@ module Enumerable
     def my_map
       return to_enum(__method__) unless block_given?
       new_arr = []
-      my_each { |element| new_arr << element if yield (element) }
+      my_each { |element| new_arr << yield(element) }
       new_arr
   
     end
