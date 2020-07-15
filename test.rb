@@ -78,23 +78,23 @@ p array
 puts  ""
 puts "#MY_ALL?"
 
-p [1, 2i, 3.14].my_all?(Numeric)
-
-p [nil, true, 99].my_all?
-
+p [1, 2i, nil].my_all?
+p "--"
+p ["BASUKER", "BOB ", "Basur", "BB"].my_all? (/B/)
+p "--"
 p [].my_all?
 
 #--------------------MY_ANY?-------------------#
 puts "
 my_any?" 
-variable = [ nil, 2 ].my_any?
+variable = [ "", "", 2 ].my_any?(Integer)
 p variable
 
 #----------------------MY_NONE?-----------------#
 puts" 
 my_none?"
 
-p ["", "", 4.12].my_none?(Float)
+p ["", "", ""].my_none?(Float)
 
 #---------------MY_COUNT---------------#
 puts "
@@ -102,7 +102,7 @@ my_count"
 
 ary = [1, 2, 4, 2]
 
-p ary.count(Float)
+p ary.my_count(4)
 
 
 #-------------my_map------------#
@@ -111,4 +111,8 @@ my_map"
 
 a = [ "a", "b", "c", "d" ]
 
-p a.my_map.with_index {|x, i| x * i}
+p a.my_map {|x| x + "!"}
+
+p a
+
+#-------------

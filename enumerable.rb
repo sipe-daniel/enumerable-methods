@@ -32,24 +32,16 @@ module Enumerable
     end
 
     def my_all? (arg = nil)
-      validate = false
-
-      if block_given?
       
-      my_each { |value| validate = true unless yield (value)}
-
-       return false if validate
-       true
+      if block_given?
+        my_each { |value| return false unless yield (value)}
+        true
 
       elsif !block_given? && arg.nil?
-
-       my_each { |element| validate = true unless element }
-       
-       validate ? false : true
-
+        my_each { |element| return false unless element }
+        true
       else
-
-       check = arg_check(arg, "all")
+       check = arg_all(arg)
        return check
 
       end
@@ -79,7 +71,7 @@ module Enumerable
         false
 
     else 
-        check = arg_check(arg, "any")
+        check = arg_any(arg)
         return check
     end
      
@@ -104,7 +96,7 @@ module Enumerable
         validate == 0 ? true : false
 
       else 
-         check = !arg_check(arg, "any")
+         check = !arg_any(arg)
          return check
       end
     end
@@ -116,8 +108,7 @@ module Enumerable
         return acumulator
 
       elsif !block_given? && arg == nil
-        length.times {acumulator += 1}
-        return acumulator
+        return length
 
       else 
         my_each { |element| acumulator += 1 if element == arg }
@@ -138,40 +129,24 @@ module Enumerable
    
   
  
-  def arg_check(arg, string = "all")
+  def arg_all(arg)
+    if arg.is_a?(Regexp)
+      my_each {|element| return false if (element.to_s =~ arg).nil? }
+      true
+    else
+       my_each {|element| return false unless element.is_a? arg}
+       true
+    end
+  end
 
-    validator = 0
-    i = 0
-    if arg.is_a? (Regexp)
-    my_each { |element| 
-      validator += 1 if !(element.to_s =~ arg).nil? 
-      i += 1
-    }
-    if string == "any"
-      return true if validator > 0
+  def arg_any(arg)
+    if arg.is_a?(Regexp)
+      my_each {|element| return true if element.to_s =~ arg}
       false
-    elsif string == "all"
-      return true if validator == i 
+    else
+      my_each {|element| return true if element.is_a? arg}
       false
     end
-
-    else 
-      j = 0
-      my_each do |element|
-         validator += 1 if element.is_a?(arg)
-         j += 1
-      end
-
-      if string == "any"
-        return true if validator > 0
-        false
-      elsif string == "all"
-        return true if validator == j
-        false
-      end
-
-    end
-
   end
 
       
