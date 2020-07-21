@@ -96,7 +96,7 @@ puts "#My_ANY?"
 
 p  %w[ant bear cat].my_any? { |word| word.length >= 3 }
 p  %w[ant bear cat].my_any? { |word| word.length >= 4 }
-p  %w[ant bear cat].any?(/d/)
+p  %w[ant bear cat].my_any?(/d/)
 p  [nil, true, 99].my_any?(Integer)
 p  [nil, true, 99].my_any?
 p  [].my_any?
@@ -120,4 +120,39 @@ p ary = [1, 2, 4, 2]
 p ary.my_count                 
 p ary.my_count(2)            
 p ary.my_count{ |x| x%2==0 }
+
+#-------------------------------------#
+puts "
+my_map------"
+
+p (1..4).my_map { |i| i*i }
+p (1..4).my_map { "cat" }
+
+#-------------------------------------#
+puts "
+my_inject------"
+
+
+#p (1..5).my_inject(:*)
+
+#p (5..10).my_inject { |sum, n| 
+#  puts "#{sum}" 
+ # sum + n } 
+
+#p (5..10).my_inject(1, :*)
+
+
+# Sum some numbers
+p (5..10).my_inject(:+)                             #=> 45
+# Same umy_sing a block and inject
+p (5..10).my_inject { |sum, n| sum + n }            #=> 45
+# Multipmy_ly some numbers
+p (5..10).my_inject(1, :*)                          #=> 151200
+# Same umy_sing a block
+p (5..10).my_inject(1) { |product, n| product * n } #=> 151200
+# find the longest word
+longest = %w{ cat sheep bear }.my_inject do |memo, word|
+   memo.length > word.length ? memo : word
+end
+p longest                                        #=> "sheep"
 

@@ -105,7 +105,34 @@ module Enumerable
     end
   end
 
+  def my_map
+    return to_enum(__method__) unless block_given?
+    n_arr = []
+    each { |element| n_arr << yield(element) }
+    n_arr
+  end
 
+  def my_inject(initial=nil, symbol=nil)
+    array = self.to_a
+    if initial.is_a? Symbol
+      symbol = initial
+      initial = nil
+    end
+    
+    initial.nil? ? result = array.shift : result = initial
+
+    return nil if array.empty?
+    return "undefined method '#{symbol}' :#{symbol}: Symbol" if block_given? && initial.nil? && !symbol.nil?
+    return "No block given" if !block_given? && symbol.nil?
+
+    unless symbol.nil?
+      array.each { |element| result = result.method(symbol).call(element) }
+      return result
+    else 
+      array.each { |element| result = yield(result, element) }
+      return result
+    end
+  end
 
 end
 
