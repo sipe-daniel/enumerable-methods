@@ -112,6 +112,12 @@ p [nil].my_none?
 p [nil, false].my_none?                                 
 p [nil, false, true].my_none?  
 
+##-##--------------------------------##
+puts "
+my_count---"
 
-
+p ary = [1, 2, 4, 2]
+p ary.my_count                 
+p ary.my_count(2)            
+p ary.my_count{ |x| x%2==0 }
 

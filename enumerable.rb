@@ -67,6 +67,19 @@ module Enumerable
       return !check_arg_any(arg)
     end
   end
+ 
+
+  def my_count(arg=nil)
+    counter = 0
+    if block_given?
+      my_each { |element| counter += 1 if yield(element)}
+    elsif arg.nil?
+      return length
+    else 
+      my_each { |element| counter += 1 if element == arg}
+    end
+    counter
+  end
 
   def check_arg_any(arg)
     if arg.is_a? (Regexp)
