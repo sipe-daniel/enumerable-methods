@@ -81,7 +81,25 @@ puts "#MY_ALL?"
 array2 = ["tapabocas", "trompeta", "toalla"]
 validate = array2.my_all?(/t/)
 
+p %w[ant bear cat].my_all? { |word| word.length >= 3 } 
+p %w[ant bear cat].my_all? { |word| word.length >= 4 } 
+p %w[ant bear cat].my_all?(/t/)                        
+p [1, 2i, 3.14].my_all?(Numeric)                       
+p [nil, true, 99].my_all?                              
+p [].my_all?
+
 p validate
+
+#--------------------------------------#
+puts ""
+puts "#My_ANY?"
+
+p  %w[ant bear cat].my_any? { |word| word.length >= 3 }
+p  %w[ant bear cat].my_any? { |word| word.length >= 4 }
+p  %w[ant bear cat].any?(/d/)
+p  [nil, true, 99].my_any?(Integer)
+p  [nil, true, 99].my_any?
+p  [].my_any?
 
 
 

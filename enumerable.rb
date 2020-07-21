@@ -30,51 +30,58 @@ module Enumerable
 
     end
 
+  def my_all? (arg = nil)  
+    if block_given?
+      my_each{ |value| return false unless yield (value) }  
+      true
+    elsif arg.nil?
+      my_each{ |value| return false unless value }  
+      true
+    else
+      check = check_arg_all(arg)
+      return check
+    end
+  end
 
-    def my_all? (arg = nil)
+  def my_any? (arg = nil)  
+    if block_given?
+      my_each{ |value| return true if yield (value) }  
+      false
+    elsif arg.nil?
+      my_each{ |value| return true if value }  
+      false
+    else
+      check = check_arg_any(arg)
+      return check
+    end
+  end
 
-      if block_given?
-       validate = false
-
-      my_each do |value|
-        validate = true unless yield (value)
-      end
-
-       return false if validate
-       true
-
-      elsif !block_given? && arg.nil?
-
-      validate2 = false
-
-       my_each do |element|
-         validate2 = true unless element
-       end
-       
-       validate2 ? false : true
-
-      else
-
-       check = check_arg(arg)
-       return check
-      end
-end
- 
-  def check_arg(arg)
+  def check_arg_any(arg)
     if arg.is_a? (Regexp)
-    validator = false
-    my_each do |element|
-       validator = true if (element.to_s =~ arg).nil?
-    end 
-    return false if validator
-     true
+      my_each { |element| return true unless (element.to_s =~ arg).nil? }
+      false
+    elsif
+      my_each { |element| return true if element.is_a?(arg) }
+      false
     else 
-    puts "regular expresion not recognized"
-   end
+      puts "regular expresion not recognized"
+    end
+  end
+ 
+  def check_arg_all(arg)
+    if arg.is_a? (Regexp)
+      my_each { |element| return false if (element.to_s =~ arg).nil? }
+    true
+    elsif
+      my_each { |element| return false unless element.is_a?(arg) }
+      true
+    else 
+      puts "regular expresion not recognized"
+    end
+  end
 
-   end
 
-      
+
 end
 
 
