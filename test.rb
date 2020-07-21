@@ -101,6 +101,17 @@ p  [nil, true, 99].my_any?(Integer)
 p  [nil, true, 99].my_any?
 p  [].my_any?
 
+#--------------------#
+puts "---none--"
+p %w{ant bear cat}.my_none? { |word| word.length == 5 } 
+p %w{ant bear cat}.my_none? { |word| word.length >= 4 } 
+p %w{ant bear cat}.my_none?(/d/)                        
+p [1, 3.14, 42].my_none?(Float)                        
+p [].my_none?                                          
+p [nil].my_none?                                        
+p [nil, false].my_none?                                 
+p [nil, false, true].my_none?  
+
 
 
 

@@ -56,6 +56,18 @@ module Enumerable
     end
   end
 
+  def my_none? (arg=nil)
+    if block_given?
+      my_each { |element| return false if yield(element) }
+      true
+    elsif arg.nil?
+      my_each { |element| return false if element }
+      true
+    else
+      return !check_arg_any(arg)
+    end
+  end
+
   def check_arg_any(arg)
     if arg.is_a? (Regexp)
       my_each { |element| return true unless (element.to_s =~ arg).nil? }
