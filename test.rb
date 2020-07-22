@@ -132,7 +132,6 @@ p (1..4).my_map { "cat" }
 puts "
 my_inject------"
 
-
 #p (1..5).my_inject(:*)
 
 #p (5..10).my_inject { |sum, n| 
@@ -156,11 +155,35 @@ longest = %w{ cat sheep bear }.my_inject do |memo, word|
 end
 p longest                                        #=> "sheep"
 
-#----------------------------------------------#
 puts "
-my_inject"
+multiply_els ------"
 
-longest = %w{ cat sheep bear }.inject do |memo, word|
-  memo.length > word.length ? memo : word
-end
-p longest    
+p [2, 4, 5].multiply_els
+
+puts "
+map with proc ------"
+
+my_proc = Proc.new { |element| element.even? }
+p [4,7,8,9].map(&my_proc)
+
+my_proc1 = Proc.new { |elt| elt*elt}
+p [1,2,3,4].map(&my_proc)
+
+my_proc1 = Proc.new { "cat"}
+p [1,2,3,4].map(&my_proc)
+
+puts "
+my_map with proc ------"
+
+my_proc = Proc.new { |element| element.even? }
+p [4,7,8,9].my_map(&my_proc)
+
+my_proc1 = Proc.new { |elt| elt*elt}
+p [1,2,3,4].my_map(&my_proc)
+
+my_proc1 = Proc.new { "cat"}
+p [1,2,3,4].my_map(my_proc){ "doc" }
+
+p [1,2,3,4].my_map{ "Lion" }
+
+

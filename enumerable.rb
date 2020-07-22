@@ -93,11 +93,14 @@ module Enumerable
     return "No block given" if !block_given? && symbol.nil?
     unless symbol.nil?
       array.each { |element| result = result.method(symbol).call(element) }
-      return result
     else 
       array.each { |element| result = yield(result, element) }
-      return result
     end
+    return result
+  end
+
+  def multiply_els
+    my_inject(:*)
   end
 
   def check_arg_any(arg)
@@ -124,12 +127,23 @@ module Enumerable
     end
   end
 
-  def my_map
-    return to_enum(__method__) unless block_given?
+  # def my_map
+  #   return to_enum(__method__) unless block_given?
+  #   n_arr = []
+  #   each { |element| n_arr << yield(element) }
+  #   n_arr
+  # end
+
+  def my_map(my_proc=nil)
+    return to_enum(__method__) if !block_given? && my_proc.nil?
     n_arr = []
-    each { |element| n_arr << yield(element) }
+    each { |element| n_arr << my_proc.call(element) } unless my_proc.nil?
+    each { |element| n_arr << yield(element) } if block_given? && my_proc.nil?
     n_arr
   end
+
+
+
+  
+  
 end
-
-
