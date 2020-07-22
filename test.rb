@@ -121,6 +121,7 @@ p ary.my_count
 p ary.my_count(2)            
 p ary.my_count{ |x| x%2==0 }
 
+<<<<<<< HEAD
 #-------------------------------------#
 puts "
 my_map------"
@@ -156,3 +157,13 @@ longest = %w{ cat sheep bear }.my_inject do |memo, word|
 end
 p longest                                        #=> "sheep"
 
+=======
+#----------------------------------------------#
+puts "
+my_inject"
+
+longest = %w{ cat sheep bear }.inject do |memo, word|
+  memo.length > word.length ? memo : word
+end
+p longest    
+>>>>>>> e02933c31bc9e3ba1654d0770ec79bf26dd9f676

@@ -80,6 +80,33 @@ module Enumerable
     end
     counter
   end
+  
+  def my_inject(initial=nil, symbol=nil)
+    if initial.is_a? Symbol
+      symbol = initial
+      initial = nil
+    end
+    array = self.to_a
+    if initial.nil?
+      result = array.shift
+    else 
+      result = initial
+    end
+    p array
+    p result
+    unless symbol.nil?
+      array.each { |element| result = result.method(symbol).call(element) }
+      return result
+    end
+
+    if block_given?
+      array.each { |element| result = yield(result, element) }
+      return result
+    end
+    
+
+
+  end
 
   def check_arg_any(arg)
     if arg.is_a? (Regexp)
