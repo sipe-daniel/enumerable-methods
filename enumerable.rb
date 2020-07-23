@@ -82,13 +82,11 @@ module Enumerable
 
   def my_inject(initial = nil, symbol = nil)
     ar = to_a
-    symbol, initial = initial, nil if initial.is_a? Symbol
-
+    if initial.is_a? Symbol
+      symbol = initial
+      initial = nil
+    end
     res = initial.nil? ? ar.shift : initial
-    return nil if ar.empty?
-    return "undefined method '#{symbol}' :#{symbol}: Symbol" if block_given? && initial.nil? && !symbol.nil?
-    return 'No block given' if !block_given? && symbol.nil?
-
     symbol.nil? ? ar.each { |elt| res = yield(res, elt) } : ar.each { |elt| res = res.method(symbol).call(elt) }
     res
   end
