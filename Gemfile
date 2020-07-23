@@ -1,6 +1,6 @@
-source 'https://rubygems.org' do
-  gem 'rubocop', '~>0.81.0'
+source 'https://rubygems.org' 
   gem 'rspec'
+  gem 'rubocop', '~>0.81.0'
 end
 
 # gem "rails"

@@ -3,6 +3,7 @@ AllCops:
     - "Guardfile"
     - "Rakefile"
     - test.rb
+    - spec_helper.rb
 
   DisplayCopNames: true
 
