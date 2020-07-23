@@ -2,8 +2,9 @@ AllCops:
   Exclude:
     - "Guardfile"
     - "Rakefile"
-    - test.rb
-    - spec_helper.rb
+    - "test.rb"
+    - "spec/spec_helper.rb"
+    - "Gemfile"
 
   DisplayCopNames: true
 
