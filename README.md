@@ -1,23 +1,23 @@
 # Enumerable-methods
-[Advanced Building Blocks](https://github.com/TheOdinProject/curriculum/blob/master/ruby_programming/archive/basic_ruby/project_advanced_building_blocks.md#project-2-enumerable-methods)
-Ruby enumerable methods recreated for this project:
+[Advanced Building Blocks](https://github.com/TheOdinProject/curriculum/blob/master/ruby_programming/archive/basic_ruby/project_advanced_building_blocks.md#project-2-enumerable-methods)  
+Ruby enumerable methods recreated for this project:  
 
-#my_each
-#my_each_with_index
-#my_select
-#my_all?
-#my_any?
-#my_none?
-#my_count
-#my_map
-#my_inject
-#multiply_els
+#my_each  
+#my_each_with_index  
+#my_select  
+#my_all?  
+#my_any?  
+#my_none?  
+#my_count  
+#my_map  
+#my_inject  
+#multiply_els  
 
 
 ## Built With
 
-- Ruby
-- Rubocup
+- Ruby  
+- Rubocup  
 
 ## Live Demo
 
@@ -25,12 +25,12 @@ Ruby enumerable methods recreated for this project:
 
 ## Get Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple example steps.  
 
-Open the terminal comand line window
-git clone https://github.com/sipe-daniel/enumerable-methods.git
-Open the main folder and execute the test.rb file
-Enjoy!
+Open the terminal comand line window  
+git clone https://github.com/sipe-daniel/enumerable-methods.git  
+Open the main folder and execute the test.rb file  
+Enjoy!  
 
 
 ## Authors
