@@ -1,5 +1,5 @@
 # Enumerable-methods
-Advanced Building Blocks
+[Advanced Building Blocks](https://github.com/TheOdinProject/curriculum/blob/master/ruby_programming/archive/basic_ruby/project_advanced_building_blocks.md#project-2-enumerable-methods)
 Ruby enumerable methods recreated for this project:
 
 #my_each
@@ -17,11 +17,20 @@ Ruby enumerable methods recreated for this project:
 ## Built With
 
 - Ruby
-
+- Rubocup
 
 ## Live Demo
 
 [Repl.it](https://repl.it/@DanielJordanJor/enumerable-methods#test.rb)
+
+## Get Started
+
+To get a local copy up and running follow these simple example steps.
+
+Open the terminal comand line window
+git clone https://github.com/sipe-daniel/enumerable-methods.git
+Open the main folder and execute the test.rb file
+Enjoy!
 
 
 ## Authors
